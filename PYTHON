@@ -49,7 +49,7 @@ or : 하나라도 Ture or False
 
 ## 문자열
 
-til = "Today I Learned"
+til = "Hello World"
 
 ### 소문자로 바꾸기
 til.lower()
@@ -67,202 +67,17 @@ til.strip()
 ##인덱싱으로 문자 가져오기
 
 til[0]
-'T'
+'H'
 
 ##슬라이싱으로 문자가져오기 - [시작인덱스 : 끝나는 인덱스+1]
 
 til[0:5]
-'Today'
+'Hello'
 
 뒤부터 할때에는 '-' 이용
 
-til[-7:]
-'Learned'
+til[-5:]
+'World'
 
 
-
-## 리스트 [ ㄹ,ㅅ,ㅌ]
-
-medicine = ["소화제", "감기약 ", "비타민", "해열제"]
-
-### 리스트에 원소추가 append
-
-medicine.append("마그네슘")
-medicine
-['소화제', '감기약 ', '비타민', '해열제', '마그네슘']
-
-### 리스트에서 원소 삭제 remove
-
-medicine.remove("해열제")
-medicine
-['소화제', '감기약 ', '비타민']
-
-### 리스트 인덱싱
-
--문자열과 대동소이. 대괄호 [ ] 를 이용
-medicine[0]
-'소화제'
-
-
-
-## 문자열을 리스트로 만들기
-
-address = " 서울특별시 강남구 역삼동 강남대로94길 15 S2빌딩 3층"
-
-### split을 사용해 공백으로 문자열 정리하고 변수에 담기
-- 나눌 기준을 split()의 괄호에 넣으면 됨 ex) 기본은 공백, '-', '/' 등등
-
-address_list = address.split()
-address_list
-['서울특별시', '강남구', '역삼동', '강남대로94길', '15', 'S2빌딩', '3층']
-
-### 문자열/리스트의 길이
-
-len(address)
-len(address_list)
-
-### 인덱싱/슬라이싱 문자열과 대동소이
-
-address_list[1]
-'강남구'
-
-### startswith() 특정 문자로 시작하는지 여부
-
-address.startswith(" 서울")
-
-### 문자열과 리스트의 in
-- 특정 문자열/원소를 포함하고 있는지 여부
-"서울" in address
-True
-
-### 리스트를 문자열로 연결  
-  " ".join(리스트) : " "이부분에 연결을 하고싶은 기호를 넣으면 됨.
-
-" ".join(address_list)
-'서울특별시 강남구 역삼동 강남대로94길 15 S2빌딩 3층'
-
-
-## 딕셔너리
-키(key)와 벨류값(value)이 있는 데이터
-
-phone = {'서울' : '02',
-         '경기': '031',
-         '인천': '032',
-         '대전': '042',
-         '부산': '051',
-         '울산': '052',
-         '대구': '053',
-         '광주': '062'}
-         
-phone["서울"]
-'02'
-
-딕셔너리에 추가하기
-phone["제주"] = "063"
-
-
-## 제어문
-* if 조건문
-* 반복문(for, while)
-
-### for의 반복수를 지정할때 > range(시작 숫자, 끝숫자+1)
-for i in range(5):
-    print(i)
-0
-1
-2
-3
-4
-
-- 시작 숫자를 정해줄 수도 있음. 
-for i in range(1, 5):
-    print(i)
-1
-2
-3
-4
-
-- 리스트 원소를 하나씩 뽑을 수도 있다.
-for m in medicine:
-    print(m)
-소화제
-감기약 
-비타민
-
-- for문 안에 if문을 넣을 수도 있다.
-for m in medicine:
-    if m == "소화제":
-        print(m)
-    else:
-        print("기타")
-
-- enunerate()를 이용해 인덱스번호와 원소를 같이 뽑아보자
-store = ["서울역점", "강남점", "마포점", "여의도점"]
-for i,s in enumerate(store):
-    print(i,s)
-0 서울역점
-1 강남점
-2 마포점
-3 여의도점
-
--문자열도 같이 뽑을 수 있다
-for i,s in enumerate(store):
-    print("i: ", i, ", s: ", s)
-i:  0 , s:  서울역점
-i:  1 , s:  강남점
-i:  2 , s:  마포점
-i:  3 , s:  여의도점
-
-
-
-# 활용
-
-## 아래의 문자를 딕셔너리 형태로 변경하기
-
-phone = ">경기 031 >강원 033 >충남 041 >충북 043 >경북 054 >경남 055 >전남 061 >전북 063"
-
-<내 코딩>
-phone_split = phone.split(">")
-phone_split = phone_split[1:]
-phone_split
-
-phone_split[0].split()
-
-phone_dict = {}
-for p in phone_split:
-    p.split()[0]
-    phone_dict[p.split()[0]] = p.split()[1]
-
-phone_dict
-
-
-<정답 예시>
-phone = ">경기 031 >강원 033 >충남 041 >충북 043 >경북 054 >경남 055 >전남 061 >전북 063"
-for phone_split in phone.split(">"):
-    if len(phone_split) > 0:
-        key = phone_split.split()[0]
-        val = phone_split.split()[1]
-        phone_dict[key] = val
-
-### 이렇게 하는 게 확실히 가독성이 뛰어나다.
-### 깔끔하게 하는 연습할 것.
-
-
-# 함수 만들기
-- 함수는 안에 뭐가있든 return을 해야 결과값이 나옴.
-- 안에 문자열을 써놔도 결과에는 안나온다는 뜻.
-- 우리가 쓰는 많은 함수들이 이런 원리로 만들어짐
-- 내가 자주쓰는 것들을 만들어 놓는 것도 좋다.
-
-ex> 월을 반환하는 함수
-
-date = "2020.11.01"
-
-def parse_month(date):
-    """월을 반환하는 함수"""
-    month = date.split(".")[1]
-    return month
-
-parse_month(date)
-'11'
 
